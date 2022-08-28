@@ -14,20 +14,16 @@ body {
 
 #search-box {
   font: inherit;
-  padding: 8px;
+  padding: 2px;
   max-width: 320px;
   margin-bottom: 16px;
 }
 
-#search-box:focus {
-  width: 100%;
-}
 
-.country-list {
-  list-style: none;
+h2,p {
+  margin: 0;
 }
-
-/* .country-list,
+.country-list,
 .country-info {
   width: 100%;
   list-style: none;
@@ -40,12 +36,18 @@ div > li {
   display: flex;
 }
 
-p {
-  margin: 0;
+p, h2 {
   margin-left: 5px;
   font-weight: 500;
 }
 
 div>li {
+  display: block;
+}
+
+#search-box:focus {
+  outline-color: rgb(53, 164, 208);
+}
+.country-info > li> div {
   display: flex;
-} */
+}

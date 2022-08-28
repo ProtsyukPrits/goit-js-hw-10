@@ -17,9 +17,8 @@ refs.inputSearch.addEventListener(
 
 function handleInputCountry(e) {
   const trimValue = refs.inputSearch.value;
-  resetDescr()
-  console.log(trimValue);
- 
+  resetDescr();
+
   if (trimValue !== '') {
     fetchCountries(trimValue).then(foundData => {
       if (foundData.length > 10) {
@@ -31,7 +30,7 @@ function handleInputCountry(e) {
       } else if (foundData.length >= 2 && foundData.length <= 10) {
         descriptionCountries(foundData);
       } else if (foundData.length === 1) {
-        descriptionCountryName(foundData);
+        descriptionCountry(foundData);
       }
     });
   }
@@ -41,19 +40,22 @@ function descriptionCountries(countries) {
   const marckup = countries
     .map(country => {
       return `<li>
-      <img src="${country.flags.svg}" alt="Flag of ${country.name.official}" width="30" hight="20">
-      <p>${country.name.official}</p></li>`;
+      <img src="${country.flags.svg}" alt="Flag of ${country.name.common}" width="30" hight="20">
+      <p>${country.name.common}</p></li>`;
     })
     .join('');
   refs.countryList.innerHTML = marckup;
 }
 
-function descriptionCountryName(countries) {
+function descriptionCountry(countries) {
   const marckup = countries
     .map(country => {
       return `<li>
-  <img src="${country.flags.svg}" alt="Flag of ${country.name.official}" width="30" hight="20">
-  <p><b>${country.name.official}</b></p>
+  <div>
+  <img src="${country.flags.svg}" alt="Flag of ${
+        country.name.common
+      }" width="30" hight="20">
+  <h2><b>${country.name.common}</b></h2></div>
   <p><b>Capital:</b>${country.capital}</p>
   <p><b>Population:</b>${country.population}</p>
   <p><b>Languages:</b>${Object.values(country.languages)}</p>
@@ -62,7 +64,6 @@ function descriptionCountryName(countries) {
     .join('');
   refs.countryInfo.innerHTML = marckup;
 }
-
 
 function resetDescr() {
   refs.countryList.innerHTML = '';
